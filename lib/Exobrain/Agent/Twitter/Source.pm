@@ -1,14 +1,13 @@
-package Exobrain::Agent::Source::Twitter;
+package Exobrain::Agent::Twitter::Source;
 use v5.10.0;
 use Moose;
-use Net::Twitter;
 use Method::Signatures;
-use Date::Manip::Date;
 
 # VERSION
 # ABSTRACT: Agent for reading tweets
 
 with 'Exobrain::Agent::Poll';
+with 'Exobrain::Agent::Twitter';
 
 =head1 DESCRIPTION
 
@@ -16,7 +15,7 @@ Exobrain agent class for twitter.
 
 This requires the following configuration section:
 
-    [Exobrain::Agent::Source::Twitter]
+    [Twitter]
     consumer_key =
     consumer_secret =
     access_token =
@@ -29,26 +28,6 @@ This requires the following configuration section:
 use constant CACHE_LAST_MENTION => 'last_mention';
 use constant CACHE_LAST_DM      => 'last_dm';
 use constant DEBUG              => 0;
-
-has twitter => (
-    is => 'ro',
-    isa => 'Net::Twitter',
-    lazy => 1,
-    builder => '_build_twitter',
-);
-
-method _build_twitter() {
-    my $config = $self->config;
-
-    return Net::Twitter->new(
-        traits   => [qw(API::RESTv1_1)],
-        consumer_key        => $config->{consumer_key},
-        consumer_secret     => $config->{consumer_secret},
-        access_token        => $config->{access_token},
-        access_token_secret => $config->{access_token_secret},
-        ssl                 => 1,
-    );
-}
 
 has last_mention => (
     is => 'rw',
@@ -150,22 +129,6 @@ method poll() {
             $self->last_dm( $dm->{id} );
         }
     }
-}
-
-method tags(Str $text) {
-    my @tags;
-
-    while ($text =~ m{\#(?<tag>\w+)}g) {
-        push @tags, $+{tag};
-    }
-    
-    return @tags;
-}
-
-method to_epoch(Str $timestamp) {
-    my $dmd = Date::Manip::Date->new;
-    $dmd->parse($timestamp) and die "Can't parse $timestamp";
-    return $dmd->printf("%s");
 }
 
 1;
