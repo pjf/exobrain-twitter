@@ -1,5 +1,6 @@
 package Exobrain::Agent::Twitter::Response;
 use Moose;
+use Method::Signatures;
 
 # VERSION
 # ABSTRACT: Spots respones bound for twitter, and sends them
@@ -10,7 +11,7 @@ with 'Exobrain::Agent::Run';
 method run() {
     # Watches for twitter responses, and translates them.
 
-    $exobrain->watch_loop(
+    $self->exobrain->watch_loop(
         class  => 'Intent::Response',
         filter => sub { $_->platform eq $self->component },
         then => sub {
