@@ -1,5 +1,6 @@
 package Exobrain::Agent::Twitter::Sink;
 use Moose;
+use Method::Signatures;
 
 # VERSION
 # ABSTRACT: Sink agent for exobrain/twitter
@@ -15,7 +16,7 @@ method run() {
 
     # Now watch for intents and process them.
 
-    $exobrain->watch_loop(
+    $self->exobrain->watch_loop(
         class => 'Intent::Tweet',
         then => sub {
             my $event = shift;
