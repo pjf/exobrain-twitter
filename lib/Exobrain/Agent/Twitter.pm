@@ -7,7 +7,7 @@ use Date::Manip::Date;
 # VERSION
 # ABSTRACT: Provides common functions for twitter components
 
-requires("config");
+requires("exobrain");
 
 sub component_name { "Twitter" }
 
@@ -19,7 +19,7 @@ has twitter => (
 );
 
 method _build_twitter() {
-    my $config = $self->config;
+    my $config = $self->exobrain->config;
 
     return Net::Twitter->new(
         traits   => [qw(API::RESTv1_1)],
