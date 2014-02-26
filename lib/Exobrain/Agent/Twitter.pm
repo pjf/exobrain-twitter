@@ -7,7 +7,7 @@ use Date::Manip::Date;
 # VERSION
 # ABSTRACT: Provides common functions for twitter components
 
-requires("exobrain");
+with 'Exobrain::Agent';
 
 sub component_name { "Twitter" }
 
