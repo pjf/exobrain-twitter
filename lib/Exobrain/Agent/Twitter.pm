@@ -19,7 +19,7 @@ has twitter => (
 );
 
 method _build_twitter() {
-    my $config = $self->exobrain->config;
+    my $config = $self->config;
 
     return Net::Twitter->new(
         traits   => [qw(API::RESTv1_1)],
