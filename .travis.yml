@@ -6,6 +6,9 @@ perl:
     - "5.12"
     - "5.10"
 
+notifications:
+    irc: "chat.freenode.net#exobrain"
+
 before_install:
     # Exobrain binary requirements
     - sudo apt-get install libzmq3-dev libexpat-dev libnet-ssleay-perl libnet-libidn-perl libcrypt-ssleay-perl cpanminus make liblocal-lib-perl
