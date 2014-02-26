@@ -125,6 +125,8 @@ method poll() {
             text      => $text,
             summary   => "[DM] \@$from: $text",
             raw       => $dm,
+            id        => $dm->{id},
+            platform  => $self->component,
         );
 
         if ($dm->{id} > $self->last_dm ) {
