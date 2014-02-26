@@ -13,6 +13,10 @@ method summary() { return $self->tweet; }
 
 BEGIN { with 'Exobrain::Intent'; }
 
-payload tweet => ( isa => TweetStr );
+payload tweet          => ( isa => TweetStr           );
+
+# Actually this is an Int, but they get pretty large. Transmitting
+# them as strings means we don't have to care about 32/64-bit issues.
+payload in_response_to => ( isa => 'Str', required => 0 );
 
 1;

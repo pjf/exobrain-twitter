@@ -89,6 +89,8 @@ method poll() {
             to_me     => 1,     # Because we're only looking at replies
             text      => $status->{text},
             raw       => $status,
+            id        => $status->{id},
+            platform  => $self->component,
         );
 
         # We explicitly check to see if we have a newer last_mention

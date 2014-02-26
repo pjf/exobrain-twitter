@@ -19,7 +19,16 @@ method run() {
         class => 'Intent::Tweet',
         then => sub {
             my $event = shift;
-            $self->twitter->update($event->tweet);
+
+            if (my $reply = $event->in_response_to) {
+                $self->twitter->update({
+                    status                => $event->tweet,
+                    in_reply_to_status_id => $reply,
+                });
+            }
+            else {
+                $self->twitter->update($event->tweet);
+            }
         },
     );
 }
