@@ -1,33 +1,86 @@
 #!/usr/bin/perl
-use 5.10.0;
+use v5.10.0;
 use strict;
 use warnings;
 use autodie;
 
 use Net::Twitter;
-use Exobrain::Config;
 
-# PODNAME: twitter-auth
+# PODNAME: exobrain-twitter-auth
 # ABSTRACT: OAuth with twitter from the command-line
 # VERSION
 
+=head1 SYNOPSIS
+
+    $ exobrain-twitter-auth
+
+=head1 DESCRIPTION
+
+This command-line utility handles the set up of Twitter
+components for the Exobrain framework. You need only run
+it once, and it will walk you through the install process.
+
+This program does not change any files on your system,
+you will need to copy-and-paste the results into your
+F<~/.exobrainrc> file at the end of the process.
+
+=cut
+
 # TODO: Make a generalised exobrain config sript that calls this.
 
-my $config = Exobrain::Config->new;
- 
+say "\n\nHey there, we'll need to start by getting an API key from twitter.\n";
+say "Head over to: https://apps.twitter.com/app/new\n";
+say "You need only fill in the required fields there.";
+say "Alternatively, if you already have a registered app, you can use that.";
+
+say "\nOnce done, you'll need to provide the API key and secret.";
+say "These are not shared with anyone, or stored anywhere.";
+
+print "\nAPI key: ";
+chomp(my $consumer_key = <STDIN>);
+
+print "\nAPI secret: ";
+chomp(my $consumer_secret = <STDIN>);
+
+unless ($consumer_key and $consumer_secret) {
+    die "I need both the key and secret to proceed. Halting.\n";
+}
+
+say "\n\nThanks! Authing with twitter...\n";
+
 my $nt = Net::Twitter->new(
      traits          => ['API::RESTv1_1', 'OAuth'],
-     consumer_key    => $config->{Twitter}{consumer_key},
-     consumer_secret => $config->{Twitter}{consumer_secret},
+     consumer_key    => $consumer_key,
+     consumer_secret => $consumer_secret,
      ssl             => 1,
 );
 
+say "\n----------------------------------------------\n";
+
+say "Great! Now, to complete the auth, visit this URL, and enter the PIN...\n";
+
 say $nt->get_authorization_url;
+
+print "\nPIN: ";
 
 my $pin = <STDIN>; # wait for input
 chomp $pin;
 
 my($access_token, $access_token_secret, $user_id, $screen_name) = $nt->request_access_token(verifier => $pin);
 
-say "Token: $access_token";
-say "Secret: $access_token_secret";
+say "\n\nThanks \@$screen_name! Please copy and paste the following into your";
+say "~/.exobrainrc file.";
+
+say "\n---cut here---\n";
+
+say "[Components]";
+say "Twitter=$VERSION\n";
+
+say "[Twitter]";
+say "consumer_key        = $consumer_key";
+say "consumer_secret     = $consumer_secret";
+say "access_token        = $access_token";
+say "access_token_secret = $access_token_secret";
+
+say "\n---cut here---\n\n";
+
