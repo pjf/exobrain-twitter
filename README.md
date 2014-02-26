@@ -1,8 +1,24 @@
-This provides the Twitter component for [Exobrain](https://github.com/pjf/exobrain).
+[![Build Status](https://travis-ci.org/pjf/exobrain-twitter.png?branch=master)](https://travis-ci.org/pjf/exobrain-twitter)
 
-To enable, add the following section to your `.exobrainrc` file:
+[![Support via Gittip](https://rawgithub.com/twolfson/gittip-badge/0.1.0/dist/gittip.png)](https://www.gittip.com/pjf/)
 
-    [Components]
-    Twitter=
+# SUMMARY
 
-Yes, the equals is required for now.
+This provides the Twitter component for Exobrain. You
+should read up on the [Exobrain Framework](https://github.com/pjf/exobrain)
+if you're not already familiar with it.
+
+# INSTALLATION
+
+If installing from the CPAN:
+
+    $ cpanm Exobrain::Twitter
+    $ exobrain-twitter-auth
+
+If installing from git:
+
+    $ dzil authordeps | cpanm
+    $ dzil listdeps   | cpanm
+    $ dzil install
+    $ exobrain-twitter-auth
+
