@@ -58,4 +58,6 @@ sub services {
     )
 }
 
+=for Pod::Coverage component services
+
 1;

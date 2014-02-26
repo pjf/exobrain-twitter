@@ -48,3 +48,5 @@ method to_epoch(Str $timestamp) {
 }
 
 1;
+
+=for Pod::Coverage component_name
