@@ -18,7 +18,7 @@ method run() {
             my $event = shift;
             my $text  = '@' . $event->to . ': ' . $event->text;
             $event->exobrain->intent('Tweet',
-                to             => $event->from,
+                to             => $event->to,
                 in_response_to => $event->in_response_to,
                 tweet          => $text,
                 # TODO - Handle a DM (private) flag if passed
