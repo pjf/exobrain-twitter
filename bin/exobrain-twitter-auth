@@ -9,6 +9,7 @@ use Exobrain::Config;
 
 # PODNAME: twitter-auth
 # ABSTRACT: OAuth with twitter from the command-line
+# VERSION
 
 # TODO: Make a generalised exobrain config sript that calls this.
 
