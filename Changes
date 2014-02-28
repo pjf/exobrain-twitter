@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+    * DISTRIBUTED: De-crufted distributed tarball.
+                   See pjf/exobrain#37 , thanks to @tsibley.
+
 1.01      2014-02-28 02:34:35EST-0500 America/Montreal
 
     * FEATURE: exobrain-twitter-auth will not write the config file
