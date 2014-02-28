@@ -33,6 +33,8 @@ say "Head over to: https://apps.twitter.com/app/new\n";
 say "You need only fill in the required fields there.";
 say "Alternatively, if you already have a registered app, you can use that.";
 
+say "\n--> Your application MUST require read, write, and DM access <--\n";
+
 say "\nOnce done, you'll need to provide the API key and secret.";
 say "These are not shared with anyone.";
 
