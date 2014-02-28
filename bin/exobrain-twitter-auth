@@ -3,7 +3,7 @@ use v5.10.0;
 use strict;
 use warnings;
 use autodie;
-
+use Exobrain::Config 1.01;
 use Net::Twitter;
 
 # PODNAME: exobrain-twitter-auth
@@ -34,7 +34,7 @@ say "You need only fill in the required fields there.";
 say "Alternatively, if you already have a registered app, you can use that.";
 
 say "\nOnce done, you'll need to provide the API key and secret.";
-say "These are not shared with anyone, or stored anywhere.";
+say "These are not shared with anyone.";
 
 print "\nAPI key: ";
 chomp(my $consumer_key = <STDIN>);
@@ -68,19 +68,19 @@ chomp $pin;
 
 my($access_token, $access_token_secret, $user_id, $screen_name) = $nt->request_access_token(verifier => $pin);
 
-say "\n\nThanks \@$screen_name! Please copy and paste the following into your";
-say "~/.exobrainrc file.";
+say "\n\nThanks \@$screen_name!";
 
-say "\n---cut here---\n";
+my $config = 
+    "[Components]\n" .
+    "Twitter=$VERSION\n\n" .
 
-say "[Components]";
-say "Twitter=$VERSION\n";
+    "[Twitter]\n" .
+    "consumer_key        = $consumer_key\n" .
+    "consumer_secret     = $consumer_secret\n" .
+    "access_token        = $access_token\n" .
+    "access_token_secret = $access_token_secret\n"
+;
 
-say "[Twitter]";
-say "consumer_key        = $consumer_key";
-say "consumer_secret     = $consumer_secret";
-say "access_token        = $access_token";
-say "access_token_secret = $access_token_secret";
+my $filename = Exobrain::Config->write_config('Twitter.ini', $config);
 
-say "\n---cut here---\n\n";
-
+say "\n\nConfig written to $filename. Have a nice day!";

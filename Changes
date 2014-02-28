@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+    * FEATURE: exobrain-twitter-auth will not write the config file
+               for you, rather than requiring you to copy/paste.
+
 1.00      2014-02-26 03:51:06EST-0500 America/Montreal
 
     * Initial release to CPAN
