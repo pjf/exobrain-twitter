@@ -1,6 +1,7 @@
 {{$NEXT}}
 
     * DOCS: Note that you *must* have DM access for your twitter app.
+    * BUILD: Simplify dist.ini. Fix missing files.
 
 1.02      2014-02-28 12:48:26EST-0500 America/Montreal
 
