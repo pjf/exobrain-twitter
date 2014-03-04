@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+1.04      2014-03-03 22:13:46PST-0800 America/Los_Angeles
+
     * SETUP: `exobrain setup Twitter` now works!
     * TEST: Added perlcritic.rc file.
     * COMPAT: Perl 5.10 compatibility fixes.
