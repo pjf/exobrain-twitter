@@ -1,7 +1,7 @@
 package Exobrain::Twitter;
 use Moose;
 use Exobrain::Config;
-use v5.10.0;
+use feature qw(say);    # To make 5.10 happy
 
 # ABSTRACT: Twitter components for exobrain
 # VERSION
