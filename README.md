@@ -13,12 +13,12 @@ if you're not already familiar with it.
 If installing from the CPAN:
 
     $ cpanm Exobrain::Twitter
-    $ exobrain-twitter-auth
+    $ exobrain setup Twitter
 
 If installing from git:
 
     $ dzil authordeps | cpanm
     $ dzil listdeps   | cpanm
     $ dzil install
-    $ exobrain-twitter-auth
+    $ exobrain setup Twitter
 

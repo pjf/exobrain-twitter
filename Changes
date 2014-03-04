@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+    * SETUP: `exobrain setup Twitter` now works!
+    * TEST: Added perlcritic.rc file.
+
 1.03      2014-02-28 23:23:37EST-0500 America/Montreal
 
     * DOCS: Note that you *must* have DM access for your twitter app.
